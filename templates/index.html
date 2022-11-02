@@ -1,0 +1,99 @@
+{{ define "Index"}}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todo</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background-color: aliceblue;
+			}
+
+			section {
+				gap: 1rem;
+				display: flex;
+				max-width: 650px;
+				margin: 1rem auto;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			a {
+				text-align: center;
+			}
+
+			.task {
+				width: 100%;
+				padding: 1rem;
+				display: flex;
+				border-radius: 0.5rem;
+				background-color: white;
+				justify-content: space-between;
+			}
+
+			.inner {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			span {
+				display: none;
+			}
+
+			h2 {
+				font-size: 1.75rem;
+			}
+
+			a {
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 0.5rem 1rem;
+				border-radius: 0.25rem;
+				background-color: transparent;
+			}
+
+			.inner a:nth-of-type(1) {
+				color: white;
+				background-color: green;
+			}
+
+			.inner a:last-child {
+				color: white;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<h1>All Tasks</h1>
+			<a href="/newTask">Create New Task</a>
+			{{range .}}
+			<div class="task">
+				<div class="inner">
+					<h2>{{.Title}}</h2>
+					<p>{{.Description}}</p>
+				</div>
+
+				<div class="inner">
+					<a href="/deleteTask?id={{.Id}}">Delete</a>
+				</div>
+			</div>
+			{{end}}
+		</section>
+	</body>
+</html>
+{{end}}
